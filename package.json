@@ -17,7 +17,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "idb": "^7.0.0",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",

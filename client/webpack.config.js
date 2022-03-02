@@ -34,7 +34,7 @@ module.exports = () => {
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
-        name: 'Just Another Text Editor',
+        name: 'text-editor',
         short_name: 'Jate',
         description: 'A single-page text editor that runs in the browser, includes data persistence, and functions offline',
         background_color: '#225ca3',
