@@ -1,18 +1,26 @@
+// Indexed Database API is a JavaScript application programming interface provided by web browsers for managing a NoSQL database of JSON objects
+// Import the 'idb' package to use with IndexedDB.
 import { openDB } from 'idb';
 
+// Create a function that can be used to start up the database.
 const initdb = async () =>
+// Create a database named 'jate' and we will use version 1.
   openDB('jate', 1, {
+    // Sets the database schema if it isn't already defined.
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {
         console.log('jate database already exists');
         return;
       }
+      // Create an object store for our data inside of the 'jate'.
+      // We create a key named 'id' which will automatically be incremented for us.
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
       console.log('jate database created');
     },
   });
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
+// // Export a function we will use to PUT to the database.
 export const putDb = async (content) => {
   // console.error('putDb not implemented');
 
@@ -37,6 +45,7 @@ export const putDb = async (content) => {
 
 
 // TODO: Add logic for a method that gets all the content from the database
+// /Export a function we will use to GET all from the database.
 export const getDb = async () => {
   // console.error('getDb not implemented');
 

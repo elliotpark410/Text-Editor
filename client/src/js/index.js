@@ -23,10 +23,12 @@ if (typeof editor === 'undefined') {
   loadSpinner();
 }
 
+// service workers allow apps to continue functioning offline in case the user loses internet connection
 // Check if service workers are supported
 if ('serviceWorker' in navigator) {
   // register workbox service worker
   const workboxSW = new Workbox('/src-sw.js');
+  // register service worker
   workboxSW.register();
 } else {
   console.error('Service workers are not supported in this browser.');
