@@ -187,25 +187,25 @@ This code snippet shows how you set up IndexedDB for data persistence
 * Import the 'idb' package to use with IndexedDB.
 
 * Create a function that can be used to start up the database
-<br>
+
 `
 const initdb = async () =>
 `
 
 * Create a database named 'jate' and we will use version 1
-<br>
+
 `
 openDB('jate', 1, {
 `
 
 * Sets the database schema if it isn't already defined with 
-<br>
+
 `
 upgrade(db)
 `
 
 * Create an object store for our data inside of 'jate' db and a key named 'id' which will automatically be incremented
-<br>
+
 `
 db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
 `
