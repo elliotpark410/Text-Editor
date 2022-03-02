@@ -16,9 +16,9 @@ A text editor app that runs in the browser and meets the Progressive Web App (PW
 ## Links
 
 
-<!-- [Deployed App on Heroku](https://desolate-atoll-11549.herokuapp.com/)
+[Deployed App on Heroku](https://pure-chamber-15361.herokuapp.com/)
 
-<br> -->
+<br>
 
 [GIF of Application](https://drive.google.com/file/d/1JcmvHDmYU6WjGITv-FaK7d9HGSF34AQG/view)
 
@@ -85,7 +85,7 @@ To run this application, you will need Node and other dependencies:
 
 ## Usage
 
-To run this application, click on [Deployed App on Heroku](https://desolate-atoll-11549.herokuapp.com/). Additionally, there is an "install" button in the app which will allow you to use the app while offline
+To run this application, click on [Deployed App on Heroku](https://pure-chamber-15361.herokuapp.com/). Additionally, there is an "install" button in the app which will allow you to use the app while offline
 
 <br>
 
