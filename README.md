@@ -3,18 +3,12 @@
 
 A text editor app that runs in the browser and meets the Progressive Web App (PWA) criteria. It includes a couple of data persistence techniques that serve as redundancy in case one of the options is not supported by the browser. The application will also function offline.
 
-OLD README.MD MUST UPDATE!!!
-
 <br>
 
 
 ## GIF of Application
 
-<img src="Images\Social Network API Part 1.gif" title="Social Network API gif Part 1" width = 368px>
-
-<br>
-
-<img src="Images\Social Network API Part 2.gif" title="Social Network API gif Part 2" width = 368px>
+<img src="Images\Text-Editor.gif" title="Text Editor gif" width = 432px>
 
 <br>
 
@@ -26,15 +20,11 @@ OLD README.MD MUST UPDATE!!!
 
 <br> -->
 
-[GIF of Application Part 1](https://drive.google.com/file/d/1ujDLhCHu7S_Z2fy6JaPBoQSyGIfAvxco/view)
+[GIF of Application](https://drive.google.com/file/d/1JcmvHDmYU6WjGITv-FaK7d9HGSF34AQG/view)
 
 <br>
 
-[GIF of Application Part 2](https://drive.google.com/file/d/1OJXlKbEWhxF56xBDuoU5Mp2qZEXWdF5h/view)
-
-<br>
-
-[Github Repository](https://github.com/elliotpark410/Social-Network-API)
+[Github Repository](https://github.com/elliotpark410/Text-Editor)
 
 <br>
 
@@ -42,10 +32,10 @@ OLD README.MD MUST UPDATE!!!
 ## Table of Contents
   * [Getting Started](#getting-started)
   * [Installation](#installation)
+  * [Usage](#usage)
   * [Technologies Used](#technologies-used)
   * [Contribution Guidelines](#contribution-guidelines)
   * [Cloning Guidelines](#cloning-guidelines)
-  * [Screenshot](#screenshot)
   * [Code Snippets](#code-snippets)
   * [Learning Points](#learning-points)
   * [Authors](#authors)
@@ -60,8 +50,11 @@ OLD README.MD MUST UPDATE!!!
 To begin the application, use the following in command line:
 
 `
-nodemon index.js
+npm run start
 `
+
+Next, you can enter [http://localhost:3000/](http://localhost:3000/) in the browser of your choice
+
 <br>
 
 
@@ -82,21 +75,17 @@ To run this application, you will need Node and other dependencies:
 
 <br>
 
-3. Next, install all the dependencies in the package.json. In command line, you can enter:
+3. Next, clone the repository and install all the dependencies in the package.json. In command line, you can enter:
 
 `npm install 
 `
 
-4. Additionally, you can download MongoDB database to store and access data:
-
-[Download MongoDB](https://www.mongodb.com/try/download/community)
-
 <br>
 
 
-5. Lastly, you will need to download Insomnia for testing API routes:
+## Usage
 
-[Download Insomnia](https://insomnia.rest/download)
+To run this application, click on [Deployed App on Heroku](https://desolate-atoll-11549.herokuapp.com/). Additionally, there is an "install" button in the app which will allow you to use the app while offline
 
 <br>
 
@@ -143,10 +132,12 @@ Example DELETE: The API request below will delete note with id = "1"
 
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Node.js](https://nodejs.org/en/) 
-* [Express](https://www.npmjs.com/package/express) 
-* [Mongoose ODM](https://www.npmjs.com/package/mongoose) 
-* [MongoDB](https://www.mongodb.com/try/download/community)
-* [Insomnia](https://insomnia.rest/download)
+* [IndexedDB](https://www.npmjs.com/package/idb) 
+* [Webpack](https://www.npmjs.com/package/webpack) 
+* [Webpack-CLI](https://www.npmjs.com/package/webpack-cli)
+* [Webpack PWA Manifest](https://www.npmjs.com/package/webpack-pwa-manifest)
+* [Workbox Webpack Plugin](https://www.npmjs.com/package/workbox-webpack-plugin)
+* [HTML Webpack Plugin](https://www.npmjs.com/package/html-webpack-plugin)
 
 
 <br>
@@ -178,42 +169,61 @@ Github repository:
 <br>
 
 
-## Screenshot
+<!-- ## Screenshot
 
 Insomnia: Get Route request to retrieve All Users with Thoughts and Reactions
 <img src="Images\Insomnia - My Collection – Get All Users.png" title="All Users with Thoughts and Reactions screenshot" width = 800px>
 
 <br>
-<br>
+<br> -->
 
 
 ## Code Snippets
 
-This code snippet shows how you can use Express routes and Mongoose ORM to create controllers for a Reactions (i.e. comments) delete route
+This code snippet shows how you set up IndexedDB for data persistence 
 
-* findOneAndUpdate() function in Mongoose finds the first document that matches a given filter, applies an update, and returns the document 
+* Indexed Database API is a JavaScript application programming interface provided by web browsers for managing a NoSQL database of JSON objects
 
-* The filter we give findOneAndUpdate is "{_id: req.params.thoughtId}". For this app, the user includes the req.params.thoughtId in the URL
+* Import the 'idb' package to use with IndexedDB.
 
-* $pull operator is used to remove all instances of a value from an existing array. In this case, we are going into a nested object to retrieve "req.params.reactionId"
+* Create a function that can be used to start up the database
+<br>
+`
+const initdb = async () =>
+`
 
-* {new: true} will have the findOneAndUpdate() function return the object after the update was applied. The default is to return the object before the update was applied
+* Create a database named 'jate' and we will use version 1
+<br>
+`
+openDB('jate', 1, {
+`
 
-* You'll notice a "?" and the following line has a ":" which is a ternary oeprator and has the form of "condition ? value-if-true : value-if-false"
+* Sets the database schema if it isn't already defined with 
+<br>
+`
+upgrade(db)
+`
+
+* Create an object store for our data inside of 'jate' db and a key named 'id' which will automatically be incremented
+<br>
+`
+db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
+`
 
 ```
-  deleteReaction(req, res) {
-    Thought.findOneAndUpdate(
-      { _id: req.params.thoughtId },
-      { $pull: { reactions: { reactionId: req.params.reactionId } } },
-      {new: true})
-      .then((thoughtData) =>
-        !thoughtData
-          ? res.status(404).json({ message: 'No thought found with that ID.' })
-          : res.json(thoughtData)
-      )
-      .catch((err) => res.status(500).json(err));
-  },
+import { openDB } from 'idb';
+
+const initdb = async () =>
+  openDB('jate', 1, {
+    upgrade(db) {
+      if (db.objectStoreNames.contains('jate')) {
+        console.log('jate database already exists');
+        return;
+      }
+      db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
+      console.log('jate database created');
+    },
+  });
 ```
 
  <br>
@@ -221,15 +231,13 @@ This code snippet shows how you can use Express routes and Mongoose ORM to creat
 
 ## Learning Points
 
-* How to use Mongoose ODM
+* How to deploy app to Heroku
 
-* How to connect to MongoDB
+* How to use IndexedDB for data persistence
 
-* How to create NoSQL schemas and models 
+* How to use Webpack (aka module bundler) to compile JavaScript modules 
 
-* How to create REST API routes with Express
-
-* How to use Insomnia for testing API routes
+* How to create a service worker to allow apps to continue functioning offline 
 
 
 <br>
