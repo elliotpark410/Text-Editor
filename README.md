@@ -164,7 +164,7 @@ To install this code, please use [Github's guidlines to clone the repository](ht
 <br>
 
 Github repository:
->https://github.com/elliotpark410/Social-Network-API
+>https://github.com/elliotpark410/Text-Editor
 
 <br>
 
