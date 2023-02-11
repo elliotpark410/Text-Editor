@@ -31,7 +31,7 @@ To begin the application, use the following in command line:
 npm run start
 `
 
-Next, you can enter [http://localhost:3000/](http://localhost:3000/) in the browser of your choice
+Open [http://localhost:3000/](http://localhost:3000/) in the browser of your choice
 
 <br>
 
