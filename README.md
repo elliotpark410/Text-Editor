@@ -136,7 +136,7 @@ const initdb = async () =>
 
 
 ## Author
- **1. Elliot Park** 
+ **Elliot Park** 
 
 [Github](https://github.com/elliotpark410)
 
