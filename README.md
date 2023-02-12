@@ -49,7 +49,7 @@ Open [http://localhost:3000/](http://localhost:3000/) in the browser of your cho
 
 <br>
 
-3. Installdependencies in package.json
+3. Install dependencies in package.json
 
 `npm install 
 `
@@ -122,8 +122,6 @@ const initdb = async () =>
 
 
 ## Learning Points
-
-* How to deploy app to Heroku
 
 * How to use IndexedDB for data persistence
 
